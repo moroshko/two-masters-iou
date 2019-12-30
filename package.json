@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "prettier": "prettier --write \"**/*.{js,json,css,md}\"",
+    "prettier": "prettier --write \"src/**/*.{js,json,css,md}\"",
     "lint": "eslint --max-warnings 0 src",
     "start": "react-scripts start",
     "build": "react-scripts build",
