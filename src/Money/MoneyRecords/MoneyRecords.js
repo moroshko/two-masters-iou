@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import useApp from "../useApp";
-import RecordsItem from "../RecordsItem/RecordsItem";
-import { getOrderedResults } from "../helpers";
-import "./Records.css";
+import useApp from "../../useApp";
+import MoneyRecordsItem from "../MoneyRecordsItem/MoneyRecordsItem";
+import { getOrderedResults } from "../../helpers";
+import "./MoneyRecords.css";
 
 const MAX_RECORDS = 100;
 
-function Records({ newRecordId }) {
+function MoneyRecords({ newRecordId }) {
   const app = useApp();
   const [data, setData] = useState({
     isLoading: true,
@@ -18,7 +18,7 @@ function Records({ newRecordId }) {
   useEffect(() => {
     const ref = app
       .database()
-      .ref("records")
+      .ref("money")
       .orderByChild("date")
       .limitToLast(MAX_RECORDS);
     const onValueChange = dataSnapshot => {
@@ -39,13 +39,13 @@ function Records({ newRecordId }) {
   }, [app]);
 
   return (
-    <div className="Records-container">
+    <div className="MoneyRecords-container">
       {isLoading ? (
         "Loading..."
       ) : (
-        <ul className="Records-list">
+        <ul className="MoneyRecords-list">
           {records.map(([recordId, record]) => (
-            <RecordsItem
+            <MoneyRecordsItem
               recordId={recordId}
               record={record}
               onClick={() => {
@@ -65,4 +65,4 @@ function Records({ newRecordId }) {
   );
 }
 
-export default Records;
+export default MoneyRecords;

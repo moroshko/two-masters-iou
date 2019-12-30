@@ -1,26 +1,26 @@
-.NewRecord-container {
+.MoneyNewRecord-container {
   margin-top: 20px;
 }
 
-.NewRecord-footer {
+.MoneyNewRecord-footer {
   margin: 30px 0 0 160px;
   height: 22px;
   font-size: 14px;
 }
 
-.NewRecord-error {
+.MoneyNewRecord-error {
   margin-left: 30px;
   font-size: 14px;
 }
 
 @media (max-width: 420px) {
-  .NewRecord-footer {
+  .MoneyNewRecord-footer {
     display: flex;
     margin: 20px 20px 0 20px;
     height: auto;
   }
 
-  .NewRecord-error {
+  .MoneyNewRecord-error {
     margin-top: 8px;
   }
 }

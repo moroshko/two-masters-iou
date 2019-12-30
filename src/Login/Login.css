@@ -17,6 +17,11 @@
 
 .Login-label {
   width: 120px;
+  margin-right: 10px;
+}
+
+.Login-label::after {
+  content: ":";
 }
 
 .Login-input {
@@ -47,6 +52,11 @@
 
   .Login-label {
     width: auto;
+    margin-right: 0;
+  }
+
+  .Login-label::after {
+    content: "";
   }
 
   .Login-input {

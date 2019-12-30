@@ -26,11 +26,11 @@ button:hover {
 }
 
 button:disabled {
-  opacity: 0.3;
+  opacity: 0.7;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
-button.big-button {
+button.large-button {
   font-size: 18px;
   padding: 6px 15px;
 }
@@ -48,12 +48,6 @@ button.danger-button {
 button.danger-button:focus,
 button.danger-button:hover {
   box-shadow: 0 0 0 2px red;
-}
-
-button.borderless-button,
-button.borderless-button:focus {
-  min-width: auto;
-  box-shadow: none;
 }
 
 input {
@@ -79,11 +73,6 @@ input:focus {
 label {
   display: inline-block;
   text-align: right;
-  margin-right: 10px;
-}
-
-label::after {
-  content: ":";
 }
 
 .field-container {
@@ -128,12 +117,7 @@ label::after {
 
   label {
     text-align: left;
-    margin-right: 0;
     font-size: 14px;
-  }
-
-  label::after {
-    content: "";
   }
 
   .field-container {

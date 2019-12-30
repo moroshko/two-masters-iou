@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useApp from "../useApp";
-import RecordForm from "../RecordForm/RecordForm";
-import { getToday, isRecordValid, getLevaOwesDanikDiff } from "../helpers";
-import "./NewRecord.css";
+import useApp from "../../useApp";
+import MoneyRecordForm from "../MoneyRecordForm/MoneyRecordForm";
+import { getToday, isRecordValid, getLevaOwesDanikDiff } from "../../helpers";
+import "./MoneyNewRecord.css";
 
-function NewRecord({ onSuccess }) {
+function MoneyNewRecord({ onSuccess }) {
   const app = useApp();
   const [lender, setLender] = useState(null);
   const [borrower, setBorrower] = useState(null);
@@ -36,12 +36,12 @@ function NewRecord({ onSuccess }) {
     const database = app.database();
 
     database
-      .ref("records")
+      .ref("money")
       .push(newRecord)
       .then(newRecordRef => {
         const newRecordId = newRecordRef.key;
 
-        database.ref("/levaOwesDanik").transaction(
+        database.ref("moneyLevaOwesDanik").transaction(
           levaOwesDanik => levaOwesDanik + getLevaOwesDanikDiff(newRecord),
           error => {
             if (error) {
@@ -76,9 +76,9 @@ function NewRecord({ onSuccess }) {
   };
 
   return (
-    <form className="NewRecord-container" onSubmit={onSubmit}>
-      <RecordForm
-        id="new-record"
+    <form className="MoneyNewRecord-container" onSubmit={onSubmit}>
+      <MoneyRecordForm
+        id="money-new-record"
         lender={lender}
         onLenderChange={lender => {
           setLender(lender);
@@ -103,9 +103,9 @@ function NewRecord({ onSuccess }) {
         date={date}
         onDateChange={setDate}
       />
-      <div className="NewRecord-footer">
+      <div className="MoneyNewRecord-footer">
         <button
-          className="small-button"
+          className="large-button"
           type="submit"
           disabled={
             isLoading ||
@@ -121,11 +121,11 @@ function NewRecord({ onSuccess }) {
           {isLoading ? "Creating..." : "Create New Record"}
         </button>
         {error ? (
-          <span className="NewRecord-error error-message">{error}</span>
+          <span className="MoneyNewRecord-error error-message">{error}</span>
         ) : null}
       </div>
     </form>
   );
 }
 
-export default NewRecord;
+export default MoneyNewRecord;

@@ -1,8 +1,8 @@
-.EditRecord-container {
+.MoneyEditRecord-container {
   margin: 30px 0;
 }
 
-.EditRecord-footer {
+.MoneyEditRecord-footer {
   margin: 30px 22px 0 160px;
   font-size: 14px;
   height: 27px;
@@ -11,12 +11,12 @@
   align-items: center;
 }
 
-.EditRecord-error {
+.MoneyEditRecord-error {
   margin: 0 20px;
 }
 
 @media (max-width: 420px) {
-  .EditRecord-footer {
+  .MoneyEditRecord-footer {
     margin: 20px 22px 0 20px;
     height: auto;
   }

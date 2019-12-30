@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import EditRecord from "../EditRecord/EditRecord";
-import { formatRecordDate, shortenLenderOrBorrower } from "../helpers";
-import "./RecordsItem.css";
+import MoneyEditRecord from "../MoneyEditRecord/MoneyEditRecord";
+import { formatRecordDate, shortenLenderOrBorrower } from "../../helpers";
+import "./MoneyRecordsItem.css";
 
-function RecordsItem({
+function MoneyRecordsItem({
   recordId,
   record,
   onClick,
@@ -14,11 +14,11 @@ function RecordsItem({
   const containerRef = useRef();
 
   return (
-    <li className="RecordsItem">
+    <li className="MoneyRecordsItem">
       <div
-        className={`RecordsItem-record${
-          isNew ? " RecordsItem-record-created" : ""
-        }${isEdited ? " RecordsItem-record-edited" : ""}`}
+        className={`MoneyRecordsItem-record${
+          isNew ? " MoneyRecordsItem-record-created" : ""
+        }${isEdited ? " MoneyRecordsItem-record-edited" : ""}`}
         onClick={() => {
           onClick();
 
@@ -30,21 +30,21 @@ function RecordsItem({
         title={isEdited ? "Click to cancel edit" : "Click to edit"}
         ref={containerRef}
       >
-        <div className="RecordsItem-record-line1">
+        <div className="MoneyRecordsItem-record-line1">
           <div>{formatRecordDate(record.date)}</div>
           <div>
             {shortenLenderOrBorrower(record.lender)}
-            <span className="RecordsItem-record-arrow">➝</span>
+            <span className="MoneyRecordsItem-record-arrow">➝</span>
             {shortenLenderOrBorrower(record.borrower)}
           </div>
         </div>
-        <div className="RecordsItem-record-line2">
+        <div className="MoneyRecordsItem-record-line2">
           <div>{record.description}</div>
-          <div className="RecordsItem-record-amount">${record.amount}</div>
+          <div className="MoneyRecordsItem-record-amount">${record.amount}</div>
         </div>
       </div>
       {isEdited && (
-        <EditRecord
+        <MoneyEditRecord
           recordId={recordId}
           record={record}
           onUpdateSuccess={onUpdateSuccess}
@@ -54,4 +54,4 @@ function RecordsItem({
   );
 }
 
-export default RecordsItem;
+export default MoneyRecordsItem;

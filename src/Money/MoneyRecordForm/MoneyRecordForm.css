@@ -1,4 +1,4 @@
-.RecordForm-lender-and-borrower-container {
+.MoneyRecordForm-lender-and-borrower-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,89 +6,102 @@
   max-width: 390px;
 }
 
-.RecordForm-lender-container {
+.MoneyRecordForm-lender-container {
   display: inline-block;
 }
 
-.RecordForm-arrow {
+.MoneyRecordForm-arrow {
   display: inline-block;
   vertical-align: top;
   font-size: 36px;
 }
 
-.RecordForm-borrower-container {
+.MoneyRecordForm-borrower-container {
   display: inline-block;
 }
 
-.RecordForm-lender-button {
+.MoneyRecordForm-lender-button {
   width: 150px;
   margin-top: 1px;
 }
 
-.RecordForm-lender-button:focus {
+.MoneyRecordForm-lender-button:focus {
   box-shadow: 0 0 0 1px black;
 }
 
 /* This brings button's box-shadow on top of the adjacent button. */
-.RecordForm-lender-button:hover {
+.MoneyRecordForm-lender-button:hover {
   position: relative;
   z-index: 1;
 }
 
-.RecordForm-lender-selected {
+.MoneyRecordForm-lender-selected {
   background-color: #b6fab6;
   cursor: default;
 }
 
-.RecordForm-lender-selected:hover {
+.MoneyRecordForm-lender-selected:hover {
   box-shadow: 0 0 0 1px black;
 }
 
-.RecordForm-borrower-button {
+.MoneyRecordForm-borrower-button {
   width: 150px;
   margin-top: 1px;
 }
 
-.RecordForm-borrower-button:focus {
+.MoneyRecordForm-borrower-button:focus {
   box-shadow: 0 0 0 1px black;
 }
 
 /* This brings button's box-shadow on top of the adjacent button. */
-.RecordForm-borrower-button:hover {
+.MoneyRecordForm-borrower-button:hover {
   position: relative;
   z-index: 1;
 }
 
-.RecordForm-borrower-selected {
+.MoneyRecordForm-borrower-selected {
   background-color: #ffbaba;
   cursor: default;
 }
 
-.RecordForm-lender-borrower:hover {
+.MoneyRecordForm-lender-borrower:hover {
   box-shadow: 0 0 0 1px black;
 }
 
-.RecordForm-text-fields-container {
+.MoneyRecordForm-text-fields-container {
   margin-top: 40px;
 }
 
-.RecordForm-label {
+.MoneyRecordForm-label {
   width: 150px;
+  margin-right: 10px;
 }
 
-.RecordForm-input {
+.MoneyRecordForm-label::after {
+  content: ":";
+}
+
+.MoneyRecordForm-input {
   width: calc(100% - 180px);
 }
 
 @media (max-width: 420px) {
-  .RecordForm-text-fields-container {
+  .MoneyRecordForm-text-fields-container {
     margin: 20px 20px 0;
   }
 
-  .RecordForm-input {
+  .MoneyRecordForm-input {
     width: calc(
       100% - 22px
     ); /*     1px     +     10px     +      10px     +      1px     */
     /* left-border   left-padding   right-padding   right-border */
+  }
+
+  .MoneyRecordForm-label {
+    margin-right: 0;
+  }
+
+  .MoneyRecordForm-label::after {
+    content: "";
   }
 }

@@ -1,0 +1,16 @@
+.ProfileTabContent-container {
+  padding: 30px;
+  background-color: #ddd;
+}
+
+.ProfileTabContent-logged-in-as {
+  font-size: 14px;
+}
+
+.ProfileTabContent-user-email {
+  margin-top: 10px;
+}
+
+.ProfileTabContent-logout-button {
+  margin-top: 30px;
+}

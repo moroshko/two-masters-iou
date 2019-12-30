@@ -1,5 +1,11 @@
 .Message-container {
-  padding: 20px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff45f;
+  padding: 20px 0;
+}
+
+.Message-cake {
+  margin-right: 10px;
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import { isAmountValid, isDescriptionValid, isDateValid } from "../helpers";
-import "./RecordForm.css";
+import { isAmountValid, isDescriptionValid, isDateValid } from "../../helpers";
+import "./MoneyRecordForm.css";
 
-function RecordForm({
+function MoneyRecordForm({
   id,
   lender = null,
   onLenderChange,
@@ -19,12 +19,12 @@ function RecordForm({
 }) {
   return (
     <div>
-      <div className="RecordForm-lender-and-borrower-container">
-        <div className="RecordForm-lender-container">
+      <div className="MoneyRecordForm-lender-and-borrower-container">
+        <div className="MoneyRecordForm-lender-container">
           <div>
             <button
-              className={`RecordForm-lender-button big-button${
-                lender === "leva" ? " RecordForm-lender-selected" : ""
+              className={`MoneyRecordForm-lender-button large-button${
+                lender === "leva" ? " MoneyRecordForm-lender-selected" : ""
               }`}
               type="button"
               onClick={() => {
@@ -36,8 +36,8 @@ function RecordForm({
           </div>
           <div>
             <button
-              className={`RecordForm-lender-button big-button${
-                lender === "danik" ? " RecordForm-lender-selected" : ""
+              className={`MoneyRecordForm-lender-button large-button${
+                lender === "danik" ? " MoneyRecordForm-lender-selected" : ""
               }`}
               type="button"
               onClick={() => {
@@ -49,8 +49,8 @@ function RecordForm({
           </div>
           <div>
             <button
-              className={`RecordForm-lender-button big-button${
-                lender === "2masters" ? " RecordForm-lender-selected" : ""
+              className={`MoneyRecordForm-lender-button large-button${
+                lender === "2masters" ? " MoneyRecordForm-lender-selected" : ""
               }`}
               type="button"
               onClick={() => {
@@ -61,12 +61,12 @@ function RecordForm({
             </button>
           </div>
         </div>
-        <div className="RecordForm-arrow">→</div>
-        <div className="RecordForm-borrower-container">
+        <div className="MoneyRecordForm-arrow">→</div>
+        <div className="MoneyRecordForm-borrower-container">
           <div>
             <button
-              className={`RecordForm-borrower-button big-button${
-                borrower === "leva" ? " RecordForm-borrower-selected" : ""
+              className={`MoneyRecordForm-borrower-button large-button${
+                borrower === "leva" ? " MoneyRecordForm-borrower-selected" : ""
               }`}
               type="button"
               onClick={() => {
@@ -79,8 +79,8 @@ function RecordForm({
           </div>
           <div>
             <button
-              className={`RecordForm-borrower-button big-button${
-                borrower === "danik" ? " RecordForm-borrower-selected" : ""
+              className={`MoneyRecordForm-borrower-button large-button${
+                borrower === "danik" ? " MoneyRecordForm-borrower-selected" : ""
               }`}
               type="button"
               onClick={() => {
@@ -93,8 +93,10 @@ function RecordForm({
           </div>
           <div>
             <button
-              className={`RecordForm-borrower-button big-button${
-                borrower === "2masters" ? " RecordForm-borrower-selected" : ""
+              className={`MoneyRecordForm-borrower-button large-button${
+                borrower === "2masters"
+                  ? " MoneyRecordForm-borrower-selected"
+                  : ""
               }`}
               type="button"
               onClick={() => {
@@ -107,14 +109,14 @@ function RecordForm({
           </div>
         </div>
       </div>
-      <div className="RecordForm-text-fields-container">
+      <div className="MoneyRecordForm-text-fields-container">
         <div className="field-container">
-          <label className="RecordForm-label" htmlFor={`${id}-amount`}>
+          <label className="MoneyRecordForm-label" htmlFor={`${id}-amount`}>
             Amount
           </label>
           <input
             id={`${id}-amount`}
-            className={`RecordForm-input${
+            className={`MoneyRecordForm-input${
               !isAmountDirty || isAmountValid(amount) ? "" : " invalid-input"
             }`}
             type="number"
@@ -127,12 +129,15 @@ function RecordForm({
           />
         </div>
         <div className="field-container">
-          <label className="RecordForm-label" htmlFor={`${id}-description`}>
+          <label
+            className="MoneyRecordForm-label"
+            htmlFor={`${id}-description`}
+          >
             Description
           </label>
           <input
             id={`${id}-description`}
-            className={`RecordForm-input${
+            className={`MoneyRecordForm-input${
               !isDescriptionDirty || isDescriptionValid(description)
                 ? ""
                 : " invalid-input"
@@ -147,12 +152,12 @@ function RecordForm({
           />
         </div>
         <div className="field-container">
-          <label className="RecordForm-label" htmlFor={`${id}-date`}>
+          <label className="MoneyRecordForm-label" htmlFor={`${id}-date`}>
             Date
           </label>
           <input
             id={`${id}-date`}
-            className={`RecordForm-input${
+            className={`MoneyRecordForm-input${
               isDateValid(date) ? "" : " invalid-input"
             }`}
             type="date"
@@ -167,4 +172,4 @@ function RecordForm({
   );
 }
 
-export default RecordForm;
+export default MoneyRecordForm;

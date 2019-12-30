@@ -88,7 +88,7 @@ function Login() {
         </div>
         <div className="Login-footer">
           <button
-            className="Login-button big-button"
+            className="Login-button large-button"
             type="submit"
             disabled={isLoading}
           >

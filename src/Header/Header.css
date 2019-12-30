@@ -1,0 +1,42 @@
+.Header-container {
+  background-color: #eee;
+}
+
+.Header-tabs {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.Header-tab {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.Header-tab:last-child {
+  margin-left: auto;
+}
+
+.Header-tab--active {
+  background-color: #ddd;
+  color: #000;
+}
+
+.Header-tab-button {
+  box-shadow: none;
+  font-size: inherit;
+  min-width: auto;
+  padding: 0 30px;
+  height: 100%;
+  display: flex;
+}
+
+.Header-tab-button:focus,
+.Header-tab-button:hover {
+  box-shadow: none;
+}

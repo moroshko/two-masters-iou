@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useApp from "../useApp";
-import RecordForm from "../RecordForm/RecordForm";
-import { isRecordValid, getLevaOwesDanikDiff } from "../helpers";
-import "./EditRecord.css";
+import useApp from "../../useApp";
+import MoneyRecordForm from "../MoneyRecordForm/MoneyRecordForm";
+import { isRecordValid, getLevaOwesDanikDiff } from "../../helpers";
+import "./MoneyEditRecord.css";
 
-function EditRecord({ recordId, record, onUpdateSuccess }) {
+function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
   const app = useApp();
   const [lender, setLender] = useState(record.lender);
   const [borrower, setBorrower] = useState(record.borrower);
@@ -42,10 +42,10 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
       getLevaOwesDanikDiff(newRecord) - getLevaOwesDanikDiff(record);
 
     database
-      .ref(`records/${recordId}`)
+      .ref(`money/${recordId}`)
       .update(newRecord)
       .then(() => {
-        database.ref("/levaOwesDanik").transaction(
+        database.ref("moneyLevaOwesDanik").transaction(
           levaOwesDanik => levaOwesDanik + levaOwesDanikDiff,
           error => {
             if (error) {
@@ -80,10 +80,10 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
     const recordToDelete = { ...record };
 
     database
-      .ref(`records/${recordId}`)
+      .ref(`money/${recordId}`)
       .remove()
       .then(() => {
-        database.ref("/levaOwesDanik").transaction(
+        database.ref("moneyLevaOwesDanik").transaction(
           levaOwesDanik => levaOwesDanik - getLevaOwesDanikDiff(recordToDelete),
           error => {
             if (error) {
@@ -104,9 +104,9 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
   };
 
   return (
-    <form className="EditRecord-container" onSubmit={onSaveRecord}>
-      <RecordForm
-        id={`record-${record.key}`}
+    <form className="MoneyEditRecord-container" onSubmit={onSaveRecord}>
+      <MoneyRecordForm
+        id={`money-record-${record.key}`}
         lender={lender}
         onLenderChange={lender => {
           setLender(lender);
@@ -131,9 +131,9 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
         date={date}
         onDateChange={setDate}
       />
-      <div className="EditRecord-footer">
+      <div className="MoneyEditRecord-footer">
         <button
-          className="small-button"
+          className="large-button"
           type="submit"
           disabled={
             isLoading ||
@@ -148,10 +148,12 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
         >
           {isLoading ? "Saving..." : "Save"}
         </button>
-        {error && <div className="EditRecord-error error-message">{error}</div>}
+        {error && (
+          <div className="MoneyEditRecord-error error-message">{error}</div>
+        )}
         {amount.trim() === "" && (
           <button
-            className="EditRecord-delete-button small-button danger-button"
+            className="MoneyEditRecord-delete-button large-button danger-button"
             type="button"
             disabled={isLoading}
             title="Delete record"
@@ -165,4 +167,4 @@ function EditRecord({ recordId, record, onUpdateSuccess }) {
   );
 }
 
-export default EditRecord;
+export default MoneyEditRecord;
