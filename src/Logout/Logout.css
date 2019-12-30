@@ -1,0 +1,14 @@
+.Logout-container {
+  font-size: 14px;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+.Logout-container-collapsed {
+  display: none;
+}
+
+.Logout-button {
+  margin-left: 20px;
+}

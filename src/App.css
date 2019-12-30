@@ -1,38 +1,143 @@
-.App {
+.App-container {
+  margin: 0 auto 50px;
+  max-width: 450px;
+  font-family: Courier;
+  font-size: 18px;
+}
+
+.App-loading {
+  margin-top: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  font-family: Courier;
+  min-width: 80px;
+  background: none;
+  border: 0;
+  box-shadow: 0 0 0 1px black;
+  white-space: nowrap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+button:focus,
+button:hover {
+  outline: 0;
+  box-shadow: 0 0 0 2px black;
+}
+
+button:disabled {
+  opacity: 0.3;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+button.big-button {
+  font-size: 18px;
+  padding: 6px 15px;
+}
+
+button.small-button {
+  font-size: 14px;
+  padding: 3px 8px;
+}
+
+button.danger-button {
+  box-shadow: 0 0 0 1px red;
+  color: red;
+}
+
+button.danger-button:focus,
+button.danger-button:hover {
+  box-shadow: 0 0 0 2px red;
+}
+
+button.borderless-button,
+button.borderless-button:focus {
+  min-width: auto;
+  box-shadow: none;
+}
+
+input {
+  font-family: Courier;
+  font-size: 18px;
+  height: 27px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid black;
+  background-color: transparent; /* This removes the gray background in date inputs on Android in Chrome. */
+}
+
+input:focus {
+  outline: 0;
+  border-bottom: 2px solid black;
+}
+
+.invalid-input,
+.invalid-input:focus {
+  border-bottom: 2px solid red;
+}
+
+label {
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+}
+
+label::after {
+  content: ":";
+}
+
+.field-container {
+  margin-top: 10px;
+  height: 30px;
+}
+
+.field-container:first-child {
+  margin-top: 0;
+}
+
+.error-message {
+  color: red;
+}
+
+@media (max-width: 420px) {
+  button {
+    height: 45px;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  input {
+    margin-top: 5px;
+    padding: 0 10px;
+    height: 45px;
+    width: 100%;
+    border: 0;
+    box-shadow: 0 0 0 1px black;
+    -webkit-appearance: none; /* Allows box-shadow to be rendered properly on iOS */
+    border-radius: 0;
   }
-  to {
-    transform: rotate(360deg);
+
+  input:focus {
+    border: 0;
+    box-shadow: 0 0 0 2px black;
+  }
+
+  .invalid-input,
+  .invalid-input:focus {
+    border: 0;
+    box-shadow: 0 0 0 2px red;
+  }
+
+  label {
+    text-align: left;
+    margin-right: 0;
+    font-size: 14px;
+  }
+
+  label::after {
+    content: "";
+  }
+
+  .field-container {
+    margin: 20px 0 0;
+    height: auto;
   }
 }

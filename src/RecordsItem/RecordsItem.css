@@ -1,0 +1,52 @@
+.RecordsItem {
+  list-style-type: none;
+  font-size: 14px;
+  border-top: 1px dashed #777;
+}
+
+.RecordsItem:last-child {
+  border-bottom: 1px dashed #777;
+}
+
+.RecordsItem-record {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 2s cubic-bezier(0, 0.7, 0, 1);
+}
+
+.RecordsItem-record:hover {
+  background-color: #ddd;
+}
+
+.RecordsItem-record-created,
+.RecordsItem-record-created:hover {
+  background-color: #b6fab6;
+}
+
+.RecordsItem-record-edited,
+.RecordsItem-record-edited:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.RecordsItem-record-line1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.RecordsItem-record-arrow {
+  margin: 0 10px;
+  font-size: 16px;
+  display: inline-block;
+  transform: translateY(1px);
+}
+
+.RecordsItem-record-line2 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.RecordsItem-record-amount {
+  margin-left: 20px;
+}

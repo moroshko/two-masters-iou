@@ -1,20 +1,34 @@
 {
   "name": "two-masters-iou",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
+  "scripts": {
+    "prettier": "prettier --write \"**/*.{js,json,css,md}\"",
+    "lint": "eslint --max-warnings 0 src",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "now build --prod"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "firebase": "^7.6.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "husky": "^3.1.0",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
