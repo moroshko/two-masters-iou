@@ -23,17 +23,17 @@ function Header({ activeTab, setActiveTab }) {
         </li>
         <li
           className={`Header-tab${
-            activeTab === TABS.TIME_OFF ? " Header-tab--active" : ""
+            activeTab === TABS.LEAVE ? " Header-tab--active" : ""
           }`}
         >
           <button
             className="Header-tab-button"
             onClick={e => {
               e.preventDefault();
-              setActiveTab(TABS.TIME_OFF);
+              setActiveTab(TABS.LEAVE);
             }}
           >
-            Time Off
+            Leave
           </button>
         </li>
         <li

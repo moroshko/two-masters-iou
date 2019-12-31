@@ -1,19 +1,19 @@
-.MoneyNewRecord-container {
+.LeaveNewRecord-container {
   padding: 30px 0;
 }
 
-.MoneyNewRecord-footer {
+.LeaveNewRecord-footer {
   margin: 30px 0 0 160px;
 }
 
-.MoneyNewRecord-error {
+.LeaveNewRecord-error {
   margin-top: 10px;
   margin-right: 20px;
   font-size: 14px;
 }
 
 @media (max-width: 420px) {
-  .MoneyNewRecord-footer {
+  .LeaveNewRecord-footer {
     margin: 30px 20px 0;
   }
 }

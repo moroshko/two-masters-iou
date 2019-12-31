@@ -1,5 +1,9 @@
 import React from "react";
-import { isAmountValid, isDescriptionValid, isDateValid } from "../../helpers";
+import {
+  isMoneyAmountValid,
+  isDescriptionValid,
+  isDateValid
+} from "../../helpers";
 import "./MoneyRecordForm.css";
 
 function MoneyRecordForm({
@@ -117,7 +121,9 @@ function MoneyRecordForm({
           <input
             id={`${id}-amount`}
             className={`MoneyRecordForm-input${
-              !isAmountDirty || isAmountValid(amount) ? "" : " invalid-input"
+              !isAmountDirty || isMoneyAmountValid(amount)
+                ? ""
+                : " invalid-input"
             }`}
             type="number"
             value={amount}

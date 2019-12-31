@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import useApp from "../../useApp";
-import MoneyRecordForm from "../MoneyRecordForm/MoneyRecordForm";
-import { isMoneyRecordValid, getLevaOwesDanikDiff } from "../../helpers";
-import "./MoneyEditRecord.css";
+import LeaveRecordForm from "../LeaveRecordForm/LeaveRecordForm";
+import { isLeaveRecordValid, getLevaHasDiff } from "../../helpers";
+import "./LeaveEditRecord.css";
 
-function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
+function LeaveEditRecord({ recordId, record, onUpdateSuccess }) {
   const app = useApp();
-  const [lender, setLender] = useState(record.lender);
-  const [borrower, setBorrower] = useState(record.borrower);
-  const [amount, setAmount] = useState(String(record.amount));
-  const [isAmountDirty, setIsAmountDirty] = useState(false);
+  const [person, setPerson] = useState(record.person);
   const [description, setDescription] = useState(record.description);
   const [isDescriptionDirty, setIsDescriptionDirty] = useState(false);
-  const [date, setDate] = useState(record.date);
+  const [startDate, setStartDate] = useState(record.startDate);
+  const [isStartDateDirty, setIsStartDateDirty] = useState(false);
+  const [amount, setAmount] = useState(String(record.amount));
+  const [isAmountDirty, setIsAmountDirty] = useState(false);
   const [submitData, setSubmitData] = useState({
     isLoading: false,
     error: null
@@ -31,22 +31,20 @@ function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
     });
 
     const newRecord = {
-      lender,
-      borrower,
-      amount: parseFloat(amount),
+      person,
       description: description.trim(),
-      date
+      startDate,
+      amount: parseInt(amount, 10) || 1
     };
     const database = app.database();
-    const levaOwesDanikDiff =
-      getLevaOwesDanikDiff(newRecord) - getLevaOwesDanikDiff(record);
+    const levaHasDiff = getLevaHasDiff(newRecord) - getLevaHasDiff(record);
 
     database
-      .ref(`money/${recordId}`)
+      .ref(`leave/${recordId}`)
       .update(newRecord)
       .then(() => {
-        database.ref("moneyLevaOwesDanik").transaction(
-          levaOwesDanik => (levaOwesDanik || 0) + levaOwesDanikDiff,
+        database.ref("leaveLevaHas").transaction(
+          levaOwesDanik => (levaOwesDanik || 0) + levaHasDiff,
           error => {
             if (error) {
               setSubmitData({
@@ -80,11 +78,11 @@ function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
     const recordToDelete = { ...record };
 
     database
-      .ref(`money/${recordId}`)
+      .ref(`leave/${recordId}`)
       .remove()
       .then(() => {
-        database.ref("moneyLevaOwesDanik").transaction(
-          levaOwesDanik => levaOwesDanik - getLevaOwesDanikDiff(recordToDelete),
+        database.ref("leaveLevaHas").transaction(
+          levaHas => (levaHas || 0) - getLevaHasDiff(recordToDelete),
           error => {
             if (error) {
               setSubmitData({
@@ -104,46 +102,42 @@ function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
   };
 
   return (
-    <form className="MoneyEditRecord-container" onSubmit={onSaveRecord}>
-      <MoneyRecordForm
-        id={`money-record-${record.key}`}
-        lender={lender}
-        onLenderChange={lender => {
-          setLender(lender);
-          setBorrower(null);
-        }}
-        borrower={borrower}
-        onBorrowerChange={borrower => {
-          setBorrower(borrower);
-        }}
-        amount={amount}
-        onAmountChange={amount => {
-          setAmount(amount);
-          setIsAmountDirty(true);
-        }}
-        isAmountDirty={isAmountDirty}
+    <form className="LeaveEditRecord-container" onSubmit={onSaveRecord}>
+      <LeaveRecordForm
+        id={`leave-record-${record.key}`}
+        person={person}
+        onPersonChange={setPerson}
         description={description}
         onDescriptionChange={description => {
           setDescription(description);
           setIsDescriptionDirty(true);
         }}
         isDescriptionDirty={isDescriptionDirty}
-        date={date}
-        onDateChange={setDate}
+        startDate={startDate}
+        onStartDateChange={startDate => {
+          setStartDate(startDate);
+          setIsStartDateDirty(true);
+        }}
+        isStartDateDirty={isStartDateDirty}
+        amount={amount}
+        onAmountChange={amount => {
+          setAmount(amount);
+          setIsAmountDirty(true);
+        }}
+        isAmountDirty={isAmountDirty}
       />
-      <div className="MoneyEditRecord-footer">
-        <div className="MoneyEditRecord-footer-buttons">
+      <div className="LeaveEditRecord-footer">
+        <div className="LeaveEditRecord-footer-buttons">
           <button
             className="large-button"
             type="submit"
             disabled={
               isLoading ||
-              !isMoneyRecordValid({
-                lender,
-                borrower,
-                amount,
+              !isLeaveRecordValid({
+                person,
                 description,
-                date
+                startDate,
+                amount
               })
             }
           >
@@ -151,7 +145,7 @@ function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
           </button>
           {amount.trim() === "" && (
             <button
-              className="MoneyEditRecord-delete-button large-button danger-button"
+              className="LeaveEditRecord-delete-button large-button danger-button"
               type="button"
               disabled={isLoading}
               onClick={onDeleteRecord}
@@ -161,11 +155,11 @@ function MoneyEditRecord({ recordId, record, onUpdateSuccess }) {
           )}
         </div>
         {error && (
-          <div className="MoneyEditRecord-error error-message">{error}</div>
+          <div className="LeaveEditRecord-error error-message">{error}</div>
         )}
       </div>
     </form>
   );
 }
 
-export default MoneyEditRecord;
+export default LeaveEditRecord;

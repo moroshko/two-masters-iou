@@ -22,12 +22,10 @@ function MoneyRecordsItem({
         onClick={() => {
           onClick();
 
-          // Scroll after the EditRecord form is mounted.
           setTimeout(() => {
             containerRef.current.scrollIntoView({ behavior: "smooth" });
           });
         }}
-        title={isEdited ? "Click to cancel edit" : "Click to edit"}
         ref={containerRef}
       >
         <div className="MoneyRecordsItem-record-line1">

@@ -1,27 +1,27 @@
-.MoneyEditRecord-container {
+.LeaveEditRecord-container {
   padding: 30px 0;
 }
 
-.MoneyEditRecord-footer {
+.LeaveEditRecord-footer {
   margin: 30px 0 0 160px;
 }
 
-.MoneyEditRecord-footer-buttons {
+.LeaveEditRecord-footer-buttons {
   display: flex;
 }
 
-.MoneyEditRecord-delete-button {
+.LeaveEditRecord-delete-button {
   margin-left: auto;
 }
 
-.MoneyEditRecord-error {
+.LeaveEditRecord-error {
   margin-top: 10px;
   margin-right: 20px;
   font-size: 14px;
 }
 
 @media (max-width: 420px) {
-  .MoneyEditRecord-footer {
+  .LeaveEditRecord-footer {
     margin: 30px 20px 0;
   }
 }

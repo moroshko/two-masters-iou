@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import Login from "./Login/Login";
 import Message from "./Message/Message";
 import MoneyTabContent from "./Money/MoneyTabContent/MoneyTabContent";
-import TimeOffTabContent from "./TimeOff/TimeOffTabContent/TimeOffTabContent";
+import LeaveTabContent from "./Leave/LeaveTabContent/LeaveTabContent";
 import ProfileTabContent from "./Profile/ProfileTabContent/ProfileTabContent";
 import { getMessage } from "./helpers";
 import "./App.css";
@@ -37,7 +37,7 @@ export const AppContext = React.createContext();
 
 export const TABS = {
   MONEY: "MONEY",
-  TIME_OFF: "TIME_OFF",
+  LEAVE: "LEAVE",
   PROFILE: "PROFILE"
 };
 
@@ -72,7 +72,7 @@ function App() {
             </header>
             <main>
               {activeTab === TABS.MONEY && <MoneyTabContent />}
-              {activeTab === TABS.TIME_OFF && <TimeOffTabContent />}
+              {activeTab === TABS.LEAVE && <LeaveTabContent />}
               {activeTab === TABS.PROFILE && <ProfileTabContent user={user} />}
             </main>
           </>

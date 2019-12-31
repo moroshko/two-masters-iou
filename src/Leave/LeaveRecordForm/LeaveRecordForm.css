@@ -1,0 +1,54 @@
+.LeaveRecordForm-person-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 390px;
+}
+
+.LeaveRecordForm-person-button--selected {
+  background-color: #b6fab6;
+}
+
+.LeaveRecordForm-person-button--selected:focus,
+.LeaveRecordForm-person-button--selected:hover {
+  box-shadow: 0 0 0 1px black;
+}
+
+.LeaveRecordForm-text-fields-container {
+  margin-top: 30px;
+}
+
+.LeaveRecordForm-label {
+  width: 150px;
+  margin-right: 10px;
+}
+
+.LeaveRecordForm-label::after {
+  content: ":";
+}
+
+.LeaveRecordForm-input {
+  width: calc(100% - 180px);
+}
+
+@media (max-width: 420px) {
+  .LeaveRecordForm-text-fields-container {
+    margin: 20px 20px 0;
+  }
+
+  .LeaveRecordForm-input {
+    width: calc(
+      100% - 22px
+    ); /*     1px     +     10px     +      10px     +      1px     */
+    /* left-border   left-padding   right-padding   right-border */
+  }
+
+  .LeaveRecordForm-label {
+    margin-right: 0;
+  }
+
+  .LeaveRecordForm-label::after {
+    content: "";
+  }
+}

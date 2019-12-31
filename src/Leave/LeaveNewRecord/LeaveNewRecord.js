@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import useApp from "../../useApp";
-import MoneyRecordForm from "../MoneyRecordForm/MoneyRecordForm";
-import {
-  getToday,
-  isMoneyRecordValid,
-  getLevaOwesDanikDiff
-} from "../../helpers";
-import "./MoneyNewRecord.css";
+import LeaveRecordForm from "../LeaveRecordForm/LeaveRecordForm";
+import { isLeaveRecordValid, getLevaHasDiff } from "../../helpers";
+import "./LeaveNewRecord.css";
 
-function MoneyNewRecord({ onSuccess }) {
+function LeaveNewRecord({ onSuccess }) {
   const app = useApp();
-  const [lender, setLender] = useState(null);
-  const [borrower, setBorrower] = useState(null);
-  const [amount, setAmount] = useState("");
-  const [isAmountDirty, setIsAmountDirty] = useState(false);
+  const [person, setPerson] = useState(null);
   const [description, setDescription] = useState("");
   const [isDescriptionDirty, setIsDescriptionDirty] = useState(false);
-  const [date, setDate] = useState(getToday);
+  const [startDate, setStartDate] = useState("");
+  const [isStartDateDirty, setIsStartDateDirty] = useState(false);
+  const [amount, setAmount] = useState("1");
+  const [isAmountDirty, setIsAmountDirty] = useState(false);
   const [submitData, setSubmitData] = useState({
     isLoading: false,
     error: null
@@ -31,23 +27,21 @@ function MoneyNewRecord({ onSuccess }) {
     });
 
     const newRecord = {
-      lender,
-      borrower,
-      amount: parseFloat(amount),
+      person,
       description: description.trim(),
-      date
+      startDate,
+      amount: parseInt(amount, 10) || 1
     };
     const database = app.database();
 
     database
-      .ref("money")
+      .ref("leave")
       .push(newRecord)
       .then(newRecordRef => {
         const newRecordId = newRecordRef.key;
 
-        database.ref("moneyLevaOwesDanik").transaction(
-          levaOwesDanik =>
-            (levaOwesDanik || 0) + getLevaOwesDanikDiff(newRecord),
+        database.ref("leaveLevaHas").transaction(
+          levaHas => (levaHas || 0) + getLevaHasDiff(newRecord),
           error => {
             if (error) {
               setSubmitData({
@@ -55,13 +49,13 @@ function MoneyNewRecord({ onSuccess }) {
                 error: "Something went wrong"
               });
             } else {
-              setLender(null);
-              setBorrower(null);
-              setAmount("");
-              setIsAmountDirty(false);
+              setPerson(null);
               setDescription("");
               setIsDescriptionDirty(false);
-              setDate(getToday());
+              setStartDate("");
+              setIsStartDateDirty(false);
+              setAmount("1");
+              setIsAmountDirty(false);
               setSubmitData({
                 isLoading: false,
                 error: null
@@ -81,56 +75,52 @@ function MoneyNewRecord({ onSuccess }) {
   };
 
   return (
-    <form className="MoneyNewRecord-container" onSubmit={onSubmit}>
-      <MoneyRecordForm
-        id="money-new-record"
-        lender={lender}
-        onLenderChange={lender => {
-          setLender(lender);
-          setBorrower(null);
-        }}
-        borrower={borrower}
-        onBorrowerChange={borrower => {
-          setBorrower(borrower);
-        }}
-        amount={amount}
-        onAmountChange={amount => {
-          setAmount(amount);
-          setIsAmountDirty(true);
-        }}
-        isAmountDirty={isAmountDirty}
+    <form className="LeaveNewRecord-container" onSubmit={onSubmit}>
+      <LeaveRecordForm
+        id="leave-new-record"
+        person={person}
+        onPersonChange={setPerson}
         description={description}
         onDescriptionChange={description => {
           setDescription(description);
           setIsDescriptionDirty(true);
         }}
         isDescriptionDirty={isDescriptionDirty}
-        date={date}
-        onDateChange={setDate}
+        startDate={startDate}
+        onStartDateChange={startDate => {
+          setStartDate(startDate);
+          setIsStartDateDirty(true);
+        }}
+        isStartDateDirty={isStartDateDirty}
+        amount={amount}
+        onAmountChange={amount => {
+          setAmount(amount);
+          setIsAmountDirty(true);
+        }}
+        isAmountDirty={isAmountDirty}
       />
-      <div className="MoneyNewRecord-footer">
+      <div className="LeaveNewRecord-footer">
         <button
           className="large-button"
           type="submit"
           disabled={
             isLoading ||
-            !isMoneyRecordValid({
-              lender,
-              borrower,
-              amount,
+            !isLeaveRecordValid({
+              person,
               description,
-              date
+              startDate,
+              amount
             })
           }
         >
           {isLoading ? "Creating..." : "Create New Record"}
         </button>
         {error && (
-          <div className="MoneyNewRecord-error error-message">{error}</div>
+          <div className="LeaveNewRecord-error error-message">{error}</div>
         )}
       </div>
     </form>
   );
 }
 
-export default MoneyNewRecord;
+export default LeaveNewRecord;

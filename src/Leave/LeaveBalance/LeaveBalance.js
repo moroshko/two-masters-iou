@@ -1,36 +1,35 @@
 import React, { useState, useEffect, useMemo } from "react";
 import useApp from "../../useApp";
-import "./MoneyBalance.css";
+import { pluralize } from "../../helpers";
+import "./LeaveBalance.css";
 
-function MoneyBalance() {
+function LeaveBalance() {
   const app = useApp();
   const [data, setData] = useState({
     isLoading: true,
-    levaOwesDanik: null
+    levasDaysOff: null
   });
   const { isLoading } = data;
   const message = useMemo(() => {
-    const { isLoading, levaOwesDanik } = data;
+    const { isLoading, levasDaysOff } = data;
 
     if (isLoading) {
       return null;
     }
 
-    const levaOwesDanikRounded = Math.round(levaOwesDanik * 100) / 100;
-
-    return levaOwesDanikRounded === 0
+    return levasDaysOff === 0
       ? "All good!"
-      : levaOwesDanikRounded > 0
-      ? `Leva owes Danik: $${levaOwesDanikRounded}`
-      : `Danik owes Leva: $${-levaOwesDanikRounded}`;
+      : levasDaysOff > 0
+      ? `Leva has ${pluralize(levasDaysOff, "day")} off`
+      : `Danik has ${pluralize(-levasDaysOff, "day")} off`;
   }, [data]);
 
   useEffect(() => {
-    const ref = app.database().ref("moneyLevaOwesDanik");
+    const ref = app.database().ref("leaveLevaHas");
     const onValueChange = dataSnapshot => {
       setData({
         isLoading: false,
-        levaOwesDanik: dataSnapshot.val() || 0
+        levasDaysOff: dataSnapshot.val() || 0
       });
     };
 
@@ -42,10 +41,10 @@ function MoneyBalance() {
   }, [app]);
 
   return (
-    <div className="MoneyBalance-container">
+    <div className="LeaveBalance-container">
       {isLoading ? "Loading..." : message}
     </div>
   );
 }
 
-export default MoneyBalance;
+export default LeaveBalance;

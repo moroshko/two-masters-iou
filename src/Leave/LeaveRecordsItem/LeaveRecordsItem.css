@@ -1,53 +1,46 @@
-.MoneyRecordsItem {
+.LeaveRecordsItem {
   list-style-type: none;
   font-size: 14px;
   border-top: 1px dashed #777;
 }
 
-.MoneyRecordsItem:last-child {
+.LeaveRecordsItem:last-child {
   border-bottom: 1px dashed #777;
 }
 
-.MoneyRecordsItem-record {
+.LeaveRecordsItem-record {
   padding: 15px 20px;
   cursor: pointer;
   transition: background-color 2s cubic-bezier(0, 0.7, 0, 1);
 }
 
-.MoneyRecordsItem-record:hover {
+.LeaveRecordsItem-record:hover {
   background-color: #ddd;
 }
 
-.MoneyRecordsItem-record-created,
-.MoneyRecordsItem-record-created:hover {
+.LeaveRecordsItem-record-created,
+.LeaveRecordsItem-record-created:hover {
   background-color: #b6fab6;
 }
 
-.MoneyRecordsItem-record-edited,
-.MoneyRecordsItem-record-edited:hover {
+.LeaveRecordsItem-record-edited,
+.LeaveRecordsItem-record-edited:hover {
   background-color: #000;
   color: #fff;
 }
 
-.MoneyRecordsItem-record-line1 {
+.LeaveRecordsItem-record-line1 {
   display: flex;
   justify-content: space-between;
 }
 
-.MoneyRecordsItem-record-arrow {
-  margin: 0 10px;
-  font-size: 16px;
-  display: inline-block;
-  transform: translateY(1px);
-}
-
-.MoneyRecordsItem-record-line2 {
+.LeaveRecordsItem-record-line2 {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
 
-.MoneyRecordsItem-record-amount {
+.LeaveRecordsItem-record-amount {
   margin-left: 40px;
   white-space: nowrap;
 }

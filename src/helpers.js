@@ -1,3 +1,7 @@
+export const pluralize = (count, word) => {
+  return count === 1 ? `1 ${word}` : `${count} ${word}s`;
+};
+
 export const getToday = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -9,12 +13,14 @@ export const getToday = () => {
   }`;
 };
 
-const amountRegex = /^\d+(\.\d{1,2})?$/;
+const MONEY_AMOUNT_REGEX = /^\d+(\.\d{1,2})?$/;
 
-export const isAmountValid = amount => {
+export const isMoneyAmountValid = amount => {
   const trimmedAmount = amount.trim();
 
-  return amountRegex.test(trimmedAmount) && parseFloat(trimmedAmount) !== 0;
+  return (
+    MONEY_AMOUNT_REGEX.test(trimmedAmount) && parseFloat(trimmedAmount) !== 0
+  );
 };
 
 export const isDescriptionValid = description => description.trim() !== "";
@@ -25,11 +31,11 @@ export const isDateValid = date => {
   return (
     !isNaN(timestamp) &&
     timestamp > 1420070400000 && // new Date('2015-01-01').getTime()
-    timestamp < 3313526400000
-  ); // new Date('2075-01-01').getTime()
+    timestamp < 3313526400000 // new Date('2075-01-01').getTime()
+  );
 };
 
-export const isRecordValid = ({
+export const isMoneyRecordValid = ({
   lender,
   borrower,
   amount,
@@ -38,7 +44,7 @@ export const isRecordValid = ({
 }) =>
   lender !== null &&
   borrower !== null &&
-  isAmountValid(amount) &&
+  isMoneyAmountValid(amount) &&
   isDescriptionValid(description) &&
   isDateValid(date);
 
@@ -136,7 +142,7 @@ export const getMessage = () => {
 };
 
 // See: https://stackoverflow.com/a/33897213/247243
-export function getOrderedResults(dataSnapshot) {
+export const getOrderedResults = dataSnapshot => {
   const result = {};
 
   if (!dataSnapshot) {
@@ -148,4 +154,33 @@ export function getOrderedResults(dataSnapshot) {
   });
 
   return result;
+};
+
+const LEAVE_AMOUNT_REGEX = /^\d+$/;
+
+export const isLeaveAmountValid = amount => {
+  const trimmedAmount = amount.trim();
+
+  return (
+    LEAVE_AMOUNT_REGEX.test(trimmedAmount) && parseInt(trimmedAmount, 10) !== 0
+  );
+};
+
+export const isLeaveRecordValid = ({
+  person,
+  description,
+  startDate,
+  amount
+}) =>
+  person !== null &&
+  isDescriptionValid(description) &&
+  isDateValid(startDate) &&
+  isLeaveAmountValid(amount);
+
+export function getLevaHasDiff({ person, amount }) {
+  return person === "leva" ? -amount : amount;
+}
+
+export function formatName(name) {
+  return name === "" ? "" : name[0].toUpperCase() + name.slice(1);
 }

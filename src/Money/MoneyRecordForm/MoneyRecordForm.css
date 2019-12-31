@@ -37,7 +37,6 @@
 
 .MoneyRecordForm-lender-selected {
   background-color: #b6fab6;
-  cursor: default;
 }
 
 .MoneyRecordForm-lender-selected:hover {
@@ -61,7 +60,6 @@
 
 .MoneyRecordForm-borrower-selected {
   background-color: #ffbaba;
-  cursor: default;
 }
 
 .MoneyRecordForm-lender-borrower:hover {

@@ -1,8 +1,8 @@
-.MoneyRecords-container {
+.LeaveRecords-container {
   margin-top: 20px;
 }
 
-.MoneyRecords-list {
+.LeaveRecords-list {
   margin: 0;
   padding: 0;
   border-left: 1px solid black;
@@ -10,7 +10,7 @@
 }
 
 @media (max-width: 420px) {
-  .MoneyRecords-list {
+  .LeaveRecords-list {
     border: 0;
   }
 }
