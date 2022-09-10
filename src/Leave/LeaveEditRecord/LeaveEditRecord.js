@@ -34,7 +34,7 @@ function LeaveEditRecord({ recordId, record, onUpdateSuccess }) {
       person,
       description: description.trim(),
       startDate,
-      amount: parseInt(amount, 10) || 1
+      amount: parseFloat(amount)
     };
     const database = app.database();
     const levaHasDiff = getLevaHasDiff(newRecord) - getLevaHasDiff(record);

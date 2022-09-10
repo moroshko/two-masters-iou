@@ -30,7 +30,7 @@ function LeaveNewRecord({ onSuccess }) {
       person,
       description: description.trim(),
       startDate,
-      amount: parseInt(amount, 10) || 1
+      amount: parseFloat(amount)
     };
     const database = app.database();
 

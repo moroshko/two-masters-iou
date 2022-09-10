@@ -156,14 +156,12 @@ export const getOrderedResults = dataSnapshot => {
   return result;
 };
 
-const LEAVE_AMOUNT_REGEX = /^\d+$/;
+const LEAVE_AMOUNT_REGEX = /^\d+(\.\d{1,2})?$/;
 
 export const isLeaveAmountValid = amount => {
   const trimmedAmount = amount.trim();
 
-  return (
-    LEAVE_AMOUNT_REGEX.test(trimmedAmount) && parseInt(trimmedAmount, 10) !== 0
-  );
+  return LEAVE_AMOUNT_REGEX.test(trimmedAmount);
 };
 
 export const isLeaveRecordValid = ({
